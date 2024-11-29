@@ -1,3 +1,5 @@
+import { authLoginGuard } from './core/guards/auth-login.guard';
+import { authLoggedGuard } from './core/guards/auth-logged.guard';
 import { Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -13,14 +15,14 @@ import { RouterMainComponent } from './layouts/router-main/router-main.component
 
 export const routes: Routes = [
     {
-        path: '', component: RouterAuthComponent, children: [
+        path: '', component: RouterAuthComponent, canActivate: [authLoggedGuard], children: [
             { path: '', redirectTo: 'login', pathMatch: 'full' },  
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
         ]
     },
     {
-        path: '', component: RouterMainComponent, children: [
+        path: '', component: RouterMainComponent, canActivate: [authLoginGuard], children: [
             { path: '', redirectTo: 'home', pathMatch: 'full' }, 
             { path: 'home', component: HomeComponent },
             { path: 'products', component: ProductsComponent },
