@@ -1,1 +1,21 @@
-<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, voluptatum dolorum quas voluptas quibusdam placeat? Libero placeat accusamus doloremque et ipsa dolor eaque asperiores expedita, possimus dignissimos, obcaecati blanditiis tempora.</p>
+<section>
+    <h1 class="h3 text-main text-center">Products:</h1>
+    <div class="row justify-content-center">
+        @for(product of productList; track product.id){
+        <div class="col-md-2 product p-3 m-2">
+            <div [routerLink]="['/productdetails',product.id]">
+                <img [src]="product.imageCover" [alt]="product.title" class="w-100 mb-2" />
+                <h2 class="h6 text-main">{{ product.category.name }}</h2>
+                <h3 class="h5">
+                    {{ product.title.split(" ")[0] }} {{ product.title.split(" ")[1] }}
+                </h3>
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>{{ product.price }} EGP</span>
+                    <span><i class="fas fa-star rating-color"></i>{{ product.ratingsAverage }}</span>
+                </div>
+            </div>
+            <button class="btn-main w-100 mt-3">Add to Cart</button>
+        </div>
+        }
+    </div>
+</section>

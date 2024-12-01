@@ -42,7 +42,10 @@
                     </div>
                 }
         </div>
-        <button class="btn btn-main">@if(isLoading){<i class="fas fa-spin fa-spinner"></i>} Login</button>
+        <div class="d-flex justify-content-end align-items-center">
+            <a routerLink="/forgetpassword" class="nav-link mx-2">Forget Password</a>
+            <button class="btn btn-main">@if(isLoading){<i class="fas fa-spin fa-spinner"></i>} Login</button>
+        </div>
         
         @if(msgError){
             <p class="alert alert-danger my-2">{{msgError}}</p>
