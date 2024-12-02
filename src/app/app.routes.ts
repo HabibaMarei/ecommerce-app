@@ -12,6 +12,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 import { RouterAuthComponent } from './layouts/router-auth/router-auth.component';
 import { RouterMainComponent } from './layouts/router-main/router-main.component';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
 
 export const routes: Routes = [
     {
@@ -19,6 +20,7 @@ export const routes: Routes = [
             { path: '', redirectTo: 'login', pathMatch: 'full' },  
             { path: 'login', component: LoginComponent },
             { path: 'register', component: RegisterComponent },
+            { path: 'forgetpassword', component: ForgetpasswordComponent },
         ]
     },
     {
@@ -26,7 +28,7 @@ export const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' }, 
             { path: 'home', component: HomeComponent },
             { path: 'products', component: ProductsComponent },
-            { path: 'productdetails', component: ProductDetailsComponent },
+            { path: 'productdetails/:id', component: ProductDetailsComponent },
             { path: 'categories', component: CategoriesComponent },
             { path: 'brands', component: BrandsComponent },
             { path: 'cart', component: CartComponent }

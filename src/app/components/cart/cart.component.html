@@ -1,1 +1,33 @@
-<p>cart works!</p>
+<section class="bg-main-light container m-3 p-4">
+    <h1 class="text-main h3">Cart Details:</h1>
+    <p class="text-main">
+        Total Cart Price: {{ cartDetails.totalCartPrice | currency : "GBP" }}
+    </p>
+    @for (product of cartDetails.products; track $index) {
+    <div class="row border-bottom m-3">
+        <div class="col-md-1">
+            <img [src]="product.product.imageCover" [alt]="product.product.title" class="w-100" />
+        </div>
+        <div class="col-md-11 d-flex align-items-center justify-content-between">
+            <div>
+                <p class="m-1">{{ product.product.title }}</p>
+                <p class="text-main m-1">
+                    Price: {{ product.price | currency : "GBP" }}
+                </p>
+                <p class="cursor-pointer m-1">
+                    <span class="cr" (click)="removeProduct(product.product._id)"><i class="text-main fa-solid fa-trash"></i></span>
+                    Remove
+                </p>
+            </div>
+            <div class="d-flex align-items-center">
+                <span class="me-3 border-main p-1 cursor-pointer" (click)="updateQuantity(product.product._id, product.count-1)"><i class="fa-solid fa-minus text-main"></i></span>
+                <span class="">{{product.count}}</span>
+                <span class="ms-3 border-main p-1 cursor-pointer" (click)="updateQuantity(product.product._id, product.count+1)"><i class="fa-solid fa-plus text-main"></i></span>
+            </div>
+        </div>
+    </div>
+    }
+    @if(cartDetails.totalCartPrice !== 0){
+        <button (click)="clearCart()" class="btn-main ms-auto d-flex align-items-center"><i class="fa-solid fa-trash me-2"></i> Clear Cart</button>
+    }
+</section>
