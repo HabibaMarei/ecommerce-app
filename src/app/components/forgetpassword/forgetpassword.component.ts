@@ -3,6 +3,7 @@ import { AuthService } from './../../core/services/auth.service';
 import { Component, inject } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-forgetpassword',
@@ -72,7 +73,13 @@ export class ForgetpasswordComponent {
       this._AuthService.setResetPassword(this.resetPasswordForm.value).subscribe({
         next: (res)=>{
             localStorage.setItem('userToken', res.token)
-            this._AuthService.storeUserData()
+            const userToken = localStorage.getItem('userToken');
+            if (userToken) {
+              const userData = jwtDecode(userToken);
+              localStorage.setItem('userData', JSON.stringify(userData));
+            } else {
+              console.error('No user token found in localStorage.');
+            }
             this._Router.navigate(['/home']);
         },
         error: (err: HttpErrorResponse)=>{

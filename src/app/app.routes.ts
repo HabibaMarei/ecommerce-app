@@ -13,6 +13,9 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 import { RouterAuthComponent } from './layouts/router-auth/router-auth.component';
 import { RouterMainComponent } from './layouts/router-main/router-main.component';
 import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { OrdersComponent } from './components/orders/orders.component';
+import { AllordersComponent } from './components/allorders/allorders.component';
 
 export const routes: Routes = [
     {
@@ -31,7 +34,10 @@ export const routes: Routes = [
             { path: 'productdetails/:id', component: ProductDetailsComponent },
             { path: 'categories', component: CategoriesComponent },
             { path: 'brands', component: BrandsComponent },
-            { path: 'cart', component: CartComponent }
+            { path: 'cart', component: CartComponent },
+            { path: 'wishlist', component: WishlistComponent },
+            { path: 'orders/:id', component: OrdersComponent },
+            { path: 'allorders', component: AllordersComponent }
         ]
     },
     { path: '**', component: NotfoundComponent }

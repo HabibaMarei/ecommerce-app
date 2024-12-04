@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { RouterLink } from '@angular/router';
 import { CartService } from '../../core/services/cart.service';
 import { ToastrService } from 'ngx-toastr';
+import { WishlistService } from '../../core/services/wishlist.service';
 
 @Component({
   selector: 'app-home',
@@ -17,10 +18,12 @@ import { ToastrService } from 'ngx-toastr';
 export class HomeComponent implements OnInit, OnDestroy {
   private readonly _ProductsService = inject(ProductsService)
   private readonly _CartService = inject(CartService)
+  private readonly _WishlistService = inject(WishlistService)
   private readonly _ToastrService = inject(ToastrService)
 
   productList: IProduct[] = []
   ProductsSubscription: Subscription = new Subscription()
+  heartToggle: boolean = false
   ngOnInit(): void {
     this.ProductsSubscription = this._ProductsService.getAllProducts().subscribe({
       next: (res) => {
@@ -49,5 +52,18 @@ export class HomeComponent implements OnInit, OnDestroy {
         }
       }
     )
+  }
+
+  addToWishlist(id: string){
+      this._WishlistService.addProductToWishlist(id).subscribe({
+        next:(res) => {
+          console.log(res);
+          this._ToastrService.success(res.message, "FreshCart")
+          this.heartToggle = true
+        },
+        error: (err)=>{
+          console.log(err); 
+        }
+      })
   }
 }

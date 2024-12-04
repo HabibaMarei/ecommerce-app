@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../core/services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterLink } from '@angular/router';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +14,9 @@ import { Router, RouterLink } from '@angular/router';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-  msgError:string = ""
+  msgError: string = ""
 
-  msgSuccess:string = ""
+  msgSuccess: string = ""
 
   private readonly _FormBuilder = inject(FormBuilder)
 
@@ -34,15 +35,22 @@ export class LoginComponent {
     if (this.loginForm.valid) {
       this.isLoading = true;
       this._AuthService.setLoginForm(this.loginForm.value).subscribe({
-        next:(res) => {
-          if(res.message == 'success'){
+        next: (res) => {
+          if (res.message == 'success') {
+            console.log(res);
             localStorage.setItem('userToken', res.token)
-            this._AuthService.storeUserData()
             this._Router.navigate(['/home']);
+            const userToken = localStorage.getItem('userToken');
+            if (userToken) {
+              const userData = jwtDecode(userToken);
+              localStorage.setItem('userData', JSON.stringify(userData));
+            } else {
+              console.error('No user token found in localStorage.');
+            }
           }
           this.isLoading = false;
         },
-        error:(err: HttpErrorResponse) => {
+        error: (err: HttpErrorResponse) => {
           this.msgError = err.error.message
           this.isLoading = false;
         }

@@ -3,6 +3,12 @@
     <div class="row justify-content-center">
         @for(product of productList; track product.id){
         <div class="col-md-2 product p-3 m-2">
+                @if(heartToggle == true){
+                    <i class="fa-solid fa-heart text-main" (click)="addToWishlist(product.id)"></i>
+                }
+                @else{
+                    <i class="fa-solid fa-heart" (click)="addToWishlist(product.id)"></i>
+                }          
             <div [routerLink]="['/productdetails',product.id]">
                 <img [src]="product.imageCover" [alt]="product.title" class="w-100 mb-2" />
                 <h2 class="h6 text-main">{{ product.category.name }}</h2>

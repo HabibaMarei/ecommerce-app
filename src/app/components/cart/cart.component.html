@@ -28,6 +28,9 @@
     </div>
     }
     @if(cartDetails.totalCartPrice !== 0){
-        <button (click)="clearCart()" class="btn-main ms-auto d-flex align-items-center"><i class="fa-solid fa-trash me-2"></i> Clear Cart</button>
+        <div class="d-flex justify-content-between">
+            <button (click)="clearCart()" class="btn-main d-flex align-items-center"><i class="fa-solid fa-trash me-2"></i> Clear Cart</button>
+            <button class="btn-main" [routerLink]="['/orders', cartDetails._id]">Go to Orders</button>
+        </div>
     }
 </section>

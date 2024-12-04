@@ -9,15 +9,10 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
-  userTokenEncoded: string | null = null;
-  userTokenDecoded: any = null;
   private readonly _Router = inject(Router);
 
   constructor(private _HttpClient: HttpClient) {
-    if (typeof window !== 'undefined' && window.localStorage) {
-      this.userTokenEncoded = localStorage.getItem('userToken');
-      this.userTokenDecoded = this.userTokenEncoded ? jwtDecode(this.userTokenEncoded) : null;
-    }
+    
   }
 
   setRegisterForm(data: object): Observable<any> {
@@ -28,15 +23,8 @@ export class AuthService {
     return this._HttpClient.post(`${environment.baseURL}/api/v1/auth/signin`, data);
   }
 
-  storeUserData(): void {
-    if (this.userTokenEncoded) {
-      localStorage.setItem('userData', JSON.stringify(this.userTokenDecoded));
-    }
-  }
 
   logOut(){
-    this.userTokenEncoded = null;
-    this.userTokenDecoded = null;
     localStorage.removeItem('userToken');
     localStorage.removeItem('userData');
     this._Router.navigate(['/login']); 

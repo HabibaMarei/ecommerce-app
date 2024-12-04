@@ -1,0 +1,25 @@
+<section class="bg-main-light container m-3 p-4">
+    <h1 class="text-main h3">Wishlist Details:</h1>
+
+    @for (product of wishList; track $index) {
+    <div class="row border-bottom m-3">
+        <div class="col-md-1">
+            <img [src]="product.imageCover" [alt]="product.title" class="w-100" />
+        </div>
+        <div class="col-md-11 d-flex align-items-center justify-content-between">
+            <div>
+                <p class="m-1">{{ product.title }}</p>
+                <p class="text-main m-1">
+                    Price: {{ product.price | currency : "GBP" }}
+                </p>
+            </div>
+            <div>
+                <p class="cursor-pointer m-1" (click)="deleteFromWishList(product.id)">
+                    <span class="cr"><i class="text-main fa-solid fa-trash"></i></span>
+                    Remove
+                </p>
+            </div>
+        </div>
+    </div>
+    }
+</section>
