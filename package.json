@@ -22,8 +22,11 @@
     "@angular/router": "^17.3.0",
     "@angular/ssr": "^17.3.11",
     "@fortawesome/fontawesome-free": "^6.7.1",
+<<<<<<< HEAD
     "@ngx-translate/core": "^16.0.4",
     "@ngx-translate/http-loader": "^16.0.1",
+=======
+>>>>>>> 9d13b8ac56d9f3f0fb3a3f8341744574c982ca5a
     "bootstrap": "^5.3.3",
     "express": "^4.18.2",
     "jwt-decode": "^4.0.0",
@@ -40,15 +43,21 @@
     "@types/jasmine": "~5.1.0",
     "@types/node": "^18.18.0",
     "angular-cli-ghpages": "^2.0.3",
+<<<<<<< HEAD
     "autoprefixer": "^10.4.20",
+=======
+>>>>>>> 9d13b8ac56d9f3f0fb3a3f8341744574c982ca5a
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+<<<<<<< HEAD
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.17",
+=======
+>>>>>>> 9d13b8ac56d9f3f0fb3a3f8341744574c982ca5a
     "typescript": "~5.4.2"
   }
 }
