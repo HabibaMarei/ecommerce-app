@@ -1,0 +1,22 @@
+<section class="bg-main-light container m-3 p-4">
+    <h1 class="text-main h3">All orders:</h1>
+    <div class="row border-bottom">
+        @for (order of orderList; track $index) {
+            <p>Payment way: {{order.paymentMethodType}}</p>
+            <p>{{order.isDelivered? "Ordered Delivered" : "On Delivery"}}</p>
+            <p>{{order.isPaid? "Ordered Paid" : "Order not Paid"}}</p>
+            <p>{{order.shippingAddress.details}}</p>
+            <p>{{order.shippingAddress.phone}}</p>
+            <p>{{order.totalOrderPrice}}</p>
+            <p>{{order.user.email}}</p>
+            <p>{{order.user.name}}</p>
+            <p>{{order.user.phone}}</p>
+            @for (product of order.cartItems; track $index) {
+                <p>{{product.product.title}}</p>
+                <p>{{product.product.category.name}}</p>
+                <p>{{product.price}}</p>
+                <img [src]="product.product.imageCover" [alt]="product.product.title" class="w-100">
+            }
+        }
+    </div>
+</section>

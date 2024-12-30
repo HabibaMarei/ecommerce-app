@@ -1,0 +1,18 @@
+<section class="bg-main-light shadow p-5 my-3">
+    <h1 class="h2 text-main">Order Now:</h1>
+    <form [formGroup]="orderForm" (ngSubmit)="submitOrderForm()">
+        <div class="mb-3">
+            <label for="details" class="form-label">Address Details:</label>
+            <textarea class="form-control" id="details" rows="2" placeholder="Please enter your details" formControlName="details"></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Please enter your phone number" formControlName="phone">
+        </div>
+        <div class="mb-3">
+            <label for="city" class="form-label">City</label>
+            <input type="text" class="form-control" id="city" placeholder="Please enter your city" formControlName="city">
+        </div>
+        <button class="btn-main"><i class="fa-brands fa-stripe"></i> Checkout</button>
+    </form>
+</section>
